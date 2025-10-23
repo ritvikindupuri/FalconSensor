@@ -9,7 +9,7 @@ The investigation involved triaging alerts from the **Falcon EDR** platform, per
 
 The investigation began with multiple critical and high-severity alerts in the Falcon incident workbench, indicating a coordinated attack spanning multiple hosts.
 
-<img src=".assets/incident-workbench.png" width="800" alt="Falcon incident workbench showing multiple critical alerts">
+<img src="./assets/incident-workbench.png" width="800" alt="Falcon incident workbench showing multiple critical alerts">
 <p align="center">*Figure 1: The incident queue, showing Critical 10/10 alerts for Lateral Movement.*</p>
 
 ### Step 1: Initial Compromise & EDR Analysis (Workstation: `TOT-TAPIR-DT`)
@@ -49,3 +49,19 @@ This query confirms the adversary successfully compromised the DC and exfiltrate
 * **Adversary Emulation:** Analyzing the TTPs of common tools like `wmiexec.py` and `ntdsutil`.
 
 ---
+## Relevant Code Files
+
+For an IR project, the "code" is your set of analytical queries and the final report. These demonstrate your technical and analytical abilities.
+
+### 1. Workstation Investigation Query (`workstation_ttp_query.sql`)
+This LogScale query was used to isolate the adversary's initial reconnaissance, persistence, and privilege escalation commands on the compromised workstation.
+
+```sql
+// LogScale Query to find adversary TTPs on the initial workstation
+// This query hones in on the specific user, host, and command-line tools
+// used for persistence and privilege escalation.
+
+UserName = srogers ComputerName = "*-DT"
+| /"net1"|/Q /c/ "net1" CommandLine=*
+| sort(@timestamp, order=desc)
+| table([@timestamp, CommandLine])
