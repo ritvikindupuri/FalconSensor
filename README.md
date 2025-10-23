@@ -9,7 +9,7 @@ The investigation involved triaging alerts from the **Falcon EDR** platform, per
 
 The investigation began with multiple critical and high-severity alerts in the Falcon incident workbench, indicating a coordinated attack spanning multiple hosts.
 
-<img src="./assets/incident-workbench.png" width="800" alt="Falcon incident workbench showing multiple critical alerts">
+<img src=".assets/incident-workbench.png" width="800" alt="Falcon incident workbench showing multiple critical alerts">
 <p align="center">*Figure 1: The incident queue, showing Critical 10/10 alerts for Lateral Movement.*</p>
 
 ### Step 1: Initial Compromise & EDR Analysis (Workstation: `TOT-TAPIR-DT`)
